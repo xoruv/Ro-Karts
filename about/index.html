@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ro-Karts - Game Features & Details</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="About Ro-Karts - Game Features & Details">
+    <meta name="description" content="Discover what makes Ro-Karts special! Learn about our racing mechanics, power-ups, competitions, and regular updates that keep the game exciting.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rokarts.com/about">
+    <meta property="og:title" content="About Ro-Karts - Game Features & Details">
+    <meta property="og:description" content="Discover what makes Ro-Karts special! Learn about our racing mechanics, power-ups, competitions, and regular updates that keep the game exciting.">
+    <meta property="og:image" content="https://rokarts.com/images/about-preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rokarts.com/about">
+    <meta property="twitter:title" content="About Ro-Karts - Game Features & Details">
+    <meta property="twitter:description" content="Discover what makes Ro-Karts special! Learn about our racing mechanics, power-ups, competitions, and regular updates that keep the game exciting.">
+    <meta property="twitter:image" content="https://rokarts.com/images/about-preview.jpg">
+
+    <!-- Discord / iMessage -->
+    <meta name="theme-color" content="#FFD700">
+    <link rel="icon" type="image/png" href="/images/logo.webp">
+    <link rel="apple-touch-icon" href="/images/logo.webp">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .about-section {
+            padding: 120px 2rem;
+            background: #0A0A0F;
+            min-height: 100vh;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B6B 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .main-description {
+            margin-bottom: 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .description-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .description-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* New simplified feature cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 215, 0, 0.3),
+                transparent
+            );
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 16px;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover .feature-icon {
+            transform: scale(1.1);
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        .feature-box h3 {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-box p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-section img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .join-discord {
+            background: #FFD700;
+            color: #0A0A0F !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .join-discord:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-section">
+            <img src="../images/logo.webp" alt="Ro-Karts">
+            <a href="/" class="logo-text">Ro-Karts</a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/sneaks">Sneak Peek</a>
+            <a href="/about">About</a>
+            <a href="/team">Team</a>
+            <a href="https://discord.gg/rokarts" class="join-discord">Join Discord</a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-container">
+            <h2 class="about-title">About Ro-Karts</h2>
+            
+            <!-- Main Description -->
+            <div class="main-description">
+                <div class="description-box">
+                    <p>Ro-Karts is an exhilarating anime-inspired racing game that combines high-speed action with strategic gameplay. Race through beautifully crafted tracks, master the art of drifting, and compete against players worldwide.</p>
+                </div>
+                
+                <div class="description-box">
+                    <p>Drawing inspiration from the beloved Mario Kart series, Ro-Karts is designed to be kid-friendly while offering engaging gameplay that players of all ages will love! Experience the perfect blend of competitive racing and family-friendly fun.</p>
+                </div>
+            </div>
+
+            <!-- New simplified feature boxes -->
+            <div class="features-grid">
+                <div class="feature-box">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 12L12 8M12 8L8 12M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>RACING MECHANICS</h3>
+                    <p>Master advanced drifting mechanics and experience smooth racing controls</p>
+                </div>
+
+                <div class="feature-box">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>POWER-UPS</h3>
+                    <p>Collect and use strategic power-ups to gain the advantage</p>
+                </div>
+
+                <div class="feature-box">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 16V9H19V16M5 16H19M5 16L3 19H21L19 16M12 9V6M12 6H15M12 6H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>COMPETITIONS</h3>
+                    <p>Join tournaments and climb the global leaderboards</p>
+                </div>
+
+                <div class="feature-box">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>REGULAR UPDATES</h3>
+                    <p>New tracks and features added regularly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">
+                <h2>RO-KARTS LINKS</h2>
+                <p>Race into action with anime-inspired karting!</p>
+            </div>
+
+            <div class="footer-buttons">
+                <a href="https://www.roblox.com/communities/33364763/Ro-Karts-Official#!/about" class="footer-btn roblox-btn">
+                    <div class="btn-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" rx="12" fill="black"/>
+                            <path d="M12 6L7 9.5V14.5L12 18L17 14.5V9.5L12 6Z" fill="#FFD700"/>
+                        </svg>
+                    </div>
+                    <div class="btn-text">
+                        <span>JOIN OUR GROUP</span>
+                        <span>RO-KARTS OFFICIAL</span>
+                    </div>
+                </a>
+                
+                <a href="https://discord.gg/rokarts" class="footer-btn discord-btn">
+                    <div class="btn-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4C14.85 4.29 14.68 4.69 14.55 5C12.95 4.76 11.37 4.76 9.8 5C9.67 4.69 9.5 4.29 9.35 4C7.85 4.26 6.41 4.71 5.08 5.33C2.45 9.41 1.65 13.37 2.06 17.27C3.77 18.53 5.43 19.32 7.07 19.85C7.5 19.25 7.89 18.61 8.24 17.94C7.67 17.73 7.13 17.47 6.61 17.16C6.74 17.07 6.87 16.97 7 16.87C10.68 18.57 14.71 18.57 18.35 16.87C18.48 16.97 18.61 17.07 18.74 17.16C18.22 17.47 17.68 17.73 17.11 17.94C17.46 18.61 17.85 19.25 18.28 19.85C19.92 19.32 21.58 18.53 23.29 17.27C23.77 12.81 22.53 8.89 19.27 5.33ZM8.68 14.81C7.65 14.81 6.8 13.86 6.8 12.71C6.8 11.56 7.63 10.61 8.68 10.61C9.73 10.61 10.58 11.56 10.56 12.71C10.56 13.86 9.73 14.81 8.68 14.81ZM15.67 14.81C14.64 14.81 13.79 13.86 13.79 12.71C13.79 11.56 14.62 10.61 15.67 10.61C16.72 10.61 17.57 11.56 17.55 12.71C17.55 13.86 16.72 14.81 15.67 14.81Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="btn-text">
+                        <span>JOIN COMMUNITY</span>
+                        <span>RO-KARTS</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer-nav-container">
+                <div class="footer-nav">
+                    <div class="footer-section">
+                        <h3>Navigation</h3>
+                        <nav>
+                            <a href="/">Home</a>
+                            <a href="/about">About</a>
+                            <a href="/team">Team</a>
+                        </nav>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>Connect</h3>
+                        <nav>
+                            <a href="https://discord.gg/rokarts">Discord</a>
+                            <a href="https://www.roblox.com/communities/33364763/Ro-Karts-Official#!/about">Roblox</a>
+                            <a href="mailto:x@loki.lol">Contact</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 Ro-Karts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
