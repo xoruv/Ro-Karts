@@ -397,6 +397,10 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Add shadow for better visibility */
         }
+
+        .member-name a:hover {
+            color: var(--accent-color, #FFD700);
+        }
     </style>
 </head>
 <body>
@@ -578,7 +582,9 @@
                         <div class="member-avatar">
                             <img src="images/xoru.webp" alt="xoru">
                         </div>
-                        <h4 class="member-name">xoru</h4>
+                        <h4 class="member-name">
+                            <a href="/xoru" style="text-decoration: none; color: inherit; transition: color 0.3s ease;">xoru</a>
+                        </h4>
                     </div>
                     
                     <div class="team-member">
