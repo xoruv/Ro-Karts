@@ -328,9 +328,23 @@
 <body>
     <!-- Notification Banner -->
     <div class="notification-container">
-        <div class="notification">
+        <div class="notification" id="updateNotification">
             <span class="news-tag">NEWS</span>
-            The game is set to launch by late March at the latest.
+            The game is set to launch by late March at the latest
+        </div>
+    </div>
+
+    <!-- Add this right before the closing body tag, before your other scripts -->
+    <div class="update-popup-overlay" id="updatePopup">
+        <div class="update-popup">
+            <div class="update-popup-header">
+                <h2>Ro-Karts Progress Update</h2>
+                <button class="update-close-btn" id="closePopupBtn">×</button>
+            </div>
+            <div class="update-popup-body">
+                <p>Hello everyone! We wanted to share a quick update with all of you regarding the game. We have been in development working hard for around 8 months now, and we're very close to releasing tester access as well as launching the game for all to play by March at the latest. Stay tuned for giveaways and sneak peeks via our Discord!</p>
+                <p>If you have any questions, join our <a href="https://discord.gg/rokarts" target="_blank">Discord server</a> and stay tuned for more updates!</p>
+            </div>
         </div>
     </div>
 
@@ -708,5 +722,42 @@
             </div>
         </div>
     </footer>
+
+    <!-- Add this script right before the closing body tag -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const notification = document.getElementById('updateNotification');
+            const popup = document.getElementById('updatePopup');
+            const closeBtn = document.getElementById('closePopupBtn');
+
+            // Show popup when clicking notification
+            notification.addEventListener('click', function() {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close popup when clicking X button
+            closeBtn.addEventListener('click', function() {
+                popup.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close popup when clicking outside
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close popup with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && popup.classList.contains('active')) {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
