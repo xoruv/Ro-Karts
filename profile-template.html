@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${username} | Ro-Karts</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.webp">
+</head>
+<body class="profile-page">
+    <!-- Background Video Container -->
+    <div class="background-container">
+        <video id="bgVideo" autoplay loop muted playsinline>
+            <source src="/assets/${username}/background.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Navbar (reusing your existing navbar) -->
+    <nav class="navbar">
+        <div class="logo-section">
+            <img src="/images/logo.webp" alt="Ro-Karts">
+            <a href="/" class="logo-text">Ro-Karts</a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/sneaks">Sneak Peek</a>
+            <a href="/about">About</a>
+            <a href="/team">Team</a>
+            <a href="https://discord.gg/rokarts" class="join-discord">Join Discord</a>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="/images/${username}.webp" class="profile-avatar" alt="${username}'s avatar">
+                <h1 class="username glow">${username}</h1>
+                <p class="role">${userRole}</p>
+            </div>
+            
+            <div class="description">
+                <p class="typewriter">${userDescription}</p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://discord.gg/rokarts" class="social-icon discord" target="_blank">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://www.roblox.com/users/${robloxId}/profile" class="social-icon roblox" target="_blank">
+                    <i class="fas fa-gamepad"></i>
+                </a>
+            </div>
+
+            <div class="music-player">
+                <audio id="bgMusic" loop>
+                    <source src="/assets/${username}/music.mp3" type="audio/mpeg">
+                </audio>
+                <button id="musicToggle" class="music-toggle">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html> 

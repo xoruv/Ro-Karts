@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>xoru | Ro-Karts</title>
+    <meta name="title" content="xoru | Ro-Karts Project Manager">
+    <meta name="description" content="Project Manager and Site Developer for Ro-Karts, an anime-inspired racing game. Based in Chicago, IL.">
+    <meta name="keywords" content="xoru, Ro-Karts, Project Manager, Game Development, Site Developer">
+    <meta name="author" content="xoru">
+    <meta name="theme-color" content="#ff4757">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://rokarts.xyz/xoru">
+    <meta property="og:title" content="xoru | Ro-Karts Project Manager">
+    <meta property="og:description" content="Project Manager and Site Developer for Ro-Karts, an anime-inspired racing game. Based in Chicago, IL.">
+    <meta property="og:image" content="https://rokarts.xyz/images/xoru.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rokarts.xyz/xoru">
+    <meta property="twitter:title" content="xoru | Ro-Karts Project Manager">
+    <meta property="twitter:description" content="Project Manager and Site Developer for Ro-Karts, an anime-inspired racing game. Based in Chicago, IL.">
+    <meta property="twitter:image" content="https://rokarts.xyz/images/xoru.webp">
+
+    <!-- Discord / iMessage -->
+    <meta name="theme-color" content="#ff4757">
+    <link rel="icon" type="image/webp" href="/images/xoru.webp">
+    <link rel="apple-touch-icon" href="/images/xoru.webp">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --accent-color: #ff4757;
+            --bg-color: #1e1e1e;
+            --card-bg: rgba(18, 18, 18, 0.95);
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #bgVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            animation: fadeIn 0.6s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+            visibility: hidden;
+        }
+
+        .profile-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.3);
+        }
+
+        .username {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+
+        .role {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .location i {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        .location:hover {
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .description {
+            min-height: 1.6em;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.1em;
+            width: 0;
+            animation: 
+                typing 8s steps(40, end) infinite,
+                blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% { 
+                width: 0; 
+            }
+            40% { 
+                width: 100%; 
+            }
+            60% { 
+                width: 100%; 
+            }
+            100% { 
+                width: 0; 
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: rgba(255, 71, 87, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 71, 87, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        a.badge:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 71, 87, 0.15);
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.1);
+            cursor: pointer;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            opacity: 1;
+            color: var(--text-color);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .enter-text {
+            color: #ffffff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            user-select: none;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .hidden {
+            opacity: 0;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            pointer-events: none;
+        }
+
+        .volume-control {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 10px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .volume-icon {
+            color: white;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .volume-icon:hover {
+            color: var(--accent-color);
+        }
+
+        .volume-slider-container {
+            width: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .volume-control:hover .volume-slider-container {
+            width: 100px;
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 4px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="enter-screen" id="enterScreen">
+        <div class="enter-text">[ click ]</div>
+    </div>
+
+    <div class="volume-control">
+        <div class="volume-icon">
+            <i class="fas fa-volume-up"></i>
+        </div>
+        <div class="volume-slider-container">
+            <input type="range" class="volume-slider" min="0" max="100" value="30">
+        </div>
+    </div>
+
+    <div class="background-container">
+        <video id="bgVideo" autoplay loop playsinline>
+            <source src="assets/Lil Tjay, Polo G & Fivio Foreign - Headshot (Official Video).mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="profile-card">
+        <img src="/images/xoru.webp" class="profile-avatar" alt="xoru">
+        <h1 class="username">xoru</h1>
+        <p class="role">Project Manager @ Ro-Karts</p>
+        
+        <div class="location">
+            <i class="fas fa-location-dot"></i>
+            <span>Chicago, IL</span>
+        </div>
+
+        <div class="description">
+            <p class="typewriter">Just a guy on a rush to get paid</p>
+        </div>
+
+        <div class="badges">
+            <a href="/" class="badge">
+                <i class="fas fa-code"></i> Site Developer
+            </a>
+            <span class="badge">
+                <i class="fas fa-tasks"></i> Project Manager
+            </span>
+        </div>
+
+        <div class="social-links">
+            <a href="https://discord.gg/rokarts" class="social-icon" target="_blank">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="#" class="social-icon" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:xoru@rokarts.xyz" class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const enterScreen = document.getElementById('enterScreen');
+            const profileCard = document.querySelector('.profile-card');
+            const video = document.getElementById('bgVideo');
+            const volumeIcon = document.querySelector('.volume-icon');
+            const volumeSlider = document.querySelector('.volume-slider');
+            let isMuted = false;
+
+            // Initialize video
+            video.removeAttribute('muted');
+            video.pause();
+            video.volume = 0.3; // 30% volume
+
+            // Update volume icon based on volume level
+            function updateVolumeIcon() {
+                const icon = volumeIcon.querySelector('i');
+                if (video.volume === 0 || isMuted) {
+                    icon.className = 'fas fa-volume-mute';
+                } else if (video.volume < 0.5) {
+                    icon.className = 'fas fa-volume-down';
+                } else {
+                    icon.className = 'fas fa-volume-up';
+                }
+            }
+
+            // Volume icon click handler
+            volumeIcon.addEventListener('click', () => {
+                isMuted = !isMuted;
+                video.muted = isMuted;
+                updateVolumeIcon();
+            });
+
+            // Volume slider handler
+            volumeSlider.addEventListener('input', (e) => {
+                const volume = e.target.value / 100;
+                video.volume = volume;
+                isMuted = volume === 0;
+                updateVolumeIcon();
+            });
+
+            // Enter screen click handler
+            enterScreen.addEventListener('click', () => {
+                enterScreen.classList.add('hidden');
+                profileCard.classList.add('visible');
+                video.play()
+                    .then(() => {
+                        updateVolumeIcon();
+                    })
+                    .catch((error) => {
+                        console.log("Error playing video:", error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html> 
