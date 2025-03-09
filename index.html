@@ -323,6 +323,46 @@
                 margin: 0 auto;
             }
         }
+
+        .update-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Darker fallback background */
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .update-popup {
+            background: rgb(15, 15, 20); /* Solid background as fallback */
+            background: rgba(15, 15, 20, 0.98); /* Semi-transparent for modern browsers */
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Add shadow for better visibility */
+        }
+
+        .notification {
+            background: rgb(10, 10, 15); /* Solid background as fallback */
+            background: rgba(10, 10, 15, 0.98); /* Semi-transparent for modern browsers */
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            /* Rest of your notification styles... */
+        }
     </style>
 </head>
 <body>
