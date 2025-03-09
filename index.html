@@ -312,13 +312,13 @@
 
         /* Adjust hero content spacing accordingly */
         .hero-content {
-            padding-top: 180px; /* Increased padding to maintain spacing */
+            padding-top: 180px;
         }
 
         @media (max-width: 768px) {
             .notification-container {
                 position: absolute;
-                top: 350px; /* Increased from 250px to move it further down */
+                top: 350px;
                 bottom: auto;
                 padding: 0.75rem 1rem;
             }
@@ -334,7 +334,19 @@
             }
 
             .hero-content {
-                padding-top: 400px; /* Increased from 300px to maintain proper spacing */
+                padding-top: 400px;
+            }
+
+            /* Make the title bigger on mobile */
+            .hero-content .title-text {
+                font-size: 4rem; /* Increase from default size */
+                margin-bottom: 1rem;
+            }
+
+            /* Optionally adjust subtitle for better proportion */
+            .hero-content .subtitle {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
             }
         }
 
