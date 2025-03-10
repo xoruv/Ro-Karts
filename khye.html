@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Khye | Ro-Karts</title>
+    <meta name="title" content="Khye | Ro-Karts">
+    <meta name="description" content="Server Manager for OtakuGaming, Moderator for Ro-Karts, and Trial Mod for Anime Zone. Based in New South Wales.">
+    <meta name="keywords" content="khye, Ro-Karts, Server Manager, OtakuGaming, Moderator, Anime Zone">
+    <meta name="author" content="khye">
+    <meta name="theme-color" content="#ff4757">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://rokarts.xyz/khye">
+    <meta property="og:title" content="Khye | Ro-Karts">
+    <meta property="og:description" content="Server Manager for OtakuGaming, Moderator for Ro-Karts, and Trial Mod for Anime Zone">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://rokarts.xyz/khye">
+    <meta property="twitter:title" content="Khye | Ro-Karts">
+    <meta property="twitter:description" content="Server Manager for OtakuGaming, Moderator for Ro-Karts, and Trial Mod for Anime Zone">
+
+    <!-- Discord / iMessage -->
+    <meta name="theme-color" content="#ff4757">
+    <link rel="icon" type="image/gif" href="/images/khye.gif">
+    <link rel="apple-touch-icon" href="/images/khye.gif">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --accent-color: #ff4757;
+            --bg-color: #1e1e1e;
+            --card-bg: rgba(18, 18, 18, 0.95);
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #bgVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .profile-card {
+            background: rgba(18, 18, 18, 0.75);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transform: perspective(1000px) translateZ(-100px) translateY(30px) rotateX(10deg);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            visibility: hidden;
+        }
+
+        .profile-card.visible {
+            opacity: 1;
+            transform: perspective(1000px) translateZ(0) translateY(0) rotateX(0);
+            visibility: visible;
+            animation: cardPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes cardPop {
+            0% {
+                opacity: 0;
+                transform: perspective(1000px) translateZ(-100px) translateY(30px) rotateX(10deg);
+            }
+            50% {
+                opacity: 1;
+                transform: perspective(1000px) translateZ(50px) translateY(-15px) rotateX(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(1000px) translateZ(0) translateY(0) rotateX(0);
+            }
+        }
+
+        /* Add hover effect for extra interactivity */
+        .profile-card:hover {
+            transform: perspective(1000px) translateZ(20px) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.3);
+        }
+
+        .username {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+
+        .role {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .location i {
+            color: var(--accent-color);
+        }
+
+        .description {
+            margin: 1.5rem 0;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.1em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 71, 87, 0.1);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 71, 87, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            cursor: pointer;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .badge:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 71, 87, 0.2);
+            border-color: rgba(255, 71, 87, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.2);
+        }
+
+        .badge i {
+            transition: transform 0.3s ease;
+        }
+
+        .badge:hover i {
+            transform: scale(1.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            opacity: 1;
+            color: var(--text-color);
+        }
+
+        .enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .enter-text {
+            color: #ffffff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            backdrop-filter: blur(0px);
+        }
+
+        .volume-control {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            padding: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .volume-control:hover {
+            border-radius: 25px;
+            padding-right: 20px;
+        }
+
+        .volume-icon {
+            color: white;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .volume-slider-container {
+            width: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-left: 0;
+        }
+
+        .volume-control:hover .volume-slider-container {
+            width: 100px;
+            margin-left: 10px;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: none;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="enter-screen" id="enterScreen">
+        <div class="enter-text">[ click ]</div>
+    </div>
+
+    <div class="volume-control">
+        <div class="volume-icon">
+            <i class="fas fa-volume-up"></i>
+        </div>
+        <div class="volume-slider-container">
+            <input type="range" class="volume-slider" min="0" max="100" value="30">
+        </div>
+    </div>
+
+    <div class="background-container">
+        <video id="bgVideo" loop playsinline muted>
+            <source src="assets/squabble_up.mp4" type="video/mp4">
+        </video>
+        <audio id="bgAudio">
+            <source src="assets/Kendrick Lamar - tv off (Official Audio).mp3" type="audio/mp3">
+        </audio>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="profile-card">
+        <img src="/images/khye.gif" class="profile-avatar" alt="khye">
+        <h1 class="username">Khye</h1>
+        <p class="role">Server Manager @ OtakuGaming</p>
+        
+        <div class="location">
+            <i class="fas fa-location-dot"></i>
+            <span>New South Wales</span>
+        </div>
+
+        <div class="description">
+            <p class="typewriter">Hi, I'm Khye! a chill australian</p>
+        </div>
+
+        <div class="badges">
+            <a href="https://discord.gg/otakugaming" class="badge" target="_blank">
+                <i class="fas fa-shield-alt"></i> Server Manager
+            </a>
+            <a href="https://discord.gg/rokarts" class="badge" target="_blank">
+                <i class="fas fa-gavel"></i> Moderator
+            </a>
+            <a href="https://discord.gg/azrbx" class="badge" target="_blank">
+                <i class="fas fa-user-shield"></i> Trial Mod
+            </a>
+        </div>
+
+        <div class="social-links">
+            <a href="https://discord.gg/rokarts" class="social-icon" target="_blank">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.roblox.com/users/1412329195/profile" class="social-icon" target="_blank">
+                <i class="fas fa-gamepad"></i>
+            </a>
+            <a href="mailto:khyerocks@hotmail.com" class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const enterScreen = document.getElementById('enterScreen');
+            const profileCard = document.querySelector('.profile-card');
+            const video = document.getElementById('bgVideo');
+            const audio = document.getElementById('bgAudio');
+            const volumeIcon = document.querySelector('.volume-icon');
+            const volumeSlider = document.querySelector('.volume-slider');
+            let isMuted = false;
+
+            // Don't autoplay anything initially
+            video.pause();
+            audio.pause();
+            
+            // Set initial volume
+            audio.volume = 0.3;
+
+            function updateVolumeIcon() {
+                const icon = volumeIcon.querySelector('i');
+                if (audio.volume === 0 || isMuted) {
+                    icon.className = 'fas fa-volume-mute';
+                } else if (audio.volume < 0.5) {
+                    icon.className = 'fas fa-volume-down';
+                } else {
+                    icon.className = 'fas fa-volume-up';
+                }
+            }
+
+            volumeIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                isMuted = !isMuted;
+                audio.muted = isMuted;
+                updateVolumeIcon();
+            });
+
+            volumeSlider.addEventListener('input', (e) => {
+                e.stopPropagation();
+                const volume = e.target.value / 100;
+                audio.volume = volume;
+                isMuted = volume === 0;
+                updateVolumeIcon();
+            });
+
+            // Handle the click event
+            enterScreen.addEventListener('click', () => {
+                // First, get user gesture to enable audio
+                const startPlayback = async () => {
+                    try {
+                        // Start the video muted
+                        await video.play();
+                        
+                        // Then start the audio
+                        await audio.play();
+                        
+                        // Update UI
+                        enterScreen.classList.add('hidden');
+                        profileCard.classList.add('visible');
+                        updateVolumeIcon();
+                    } catch (err) {
+                        console.error("Playback failed:", err);
+                    }
+                };
+
+                startPlayback();
+            });
+        });
+    </script>
+</body>
+</html> 
